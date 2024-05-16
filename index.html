@@ -161,6 +161,10 @@
                 margin-top: 0;
             }
 
+            .highlight {
+                color: #fd8d3c;
+            }
+
             .main-header {
                 font-size: 3rem;
                 margin: 0;
@@ -349,7 +353,8 @@
             </div>
         </div>
         <div class="content">
-            <div class="info-container" style="margin-top: 20px">
+            <p id="safety-message" style="margin-top: 20px"></p>
+            <div class="info-container">
                 Since 2018, the City of San Francisco has been working to
                 improve the safety of its neighborhoods. This project visualizes
                 the data that the City has collected over the past year to show
@@ -553,8 +558,71 @@
             </div>
         </div>
         <script>
+            const incidentData = {
+                Mission: 85671.0,
+                Tenderloin: 84209.0,
+                "South of Market": 65911.0,
+                "Financial District/South Beach": 62944.0,
+                "Bayview Hunters Point": 53675.0,
+                "North Beach": 26862.0,
+                "Western Addition": 26488.0,
+                "Sunset/Parkside": 24354.0,
+                "Nob Hill": 23187.0,
+                "Castro/Upper Market": 22974.0,
+                Marina: 22414.0,
+                "Hayes Valley": 22058.0,
+                "Russian Hill": 19401.0,
+                "Outer Richmond": 18385.0,
+                "West of Twin Peaks": 16545.0,
+                "Bernal Heights": 15490.0,
+                Chinatown: 14977.0,
+                "Pacific Heights": 14433.0,
+                "Mission Bay": 14237.0,
+                Excelsior: 13965.0,
+                "Potrero Hill": 13556.0,
+                "Haight Ashbury": 13111.0,
+                "Outer Mission": 11979.0,
+                "Inner Richmond": 10820.0,
+                Lakeshore: 10571.0,
+                "Inner Sunset": 10530.0,
+                "Lone Mountain/USF": 9909.0,
+                Portola: 9475.0,
+                "Noe Valley": 9028.0,
+                "Visitacion Valley": 9023.0,
+                "Oceanview/Merced/Ingleside": 8780.0,
+                "Golden Gate Park": 8519.0,
+                Japantown: 8293.0,
+                "Presidio Heights": 5300.0,
+                "Glen Park": 4627.0,
+                "Twin Peaks": 4099.0,
+                "Treasure Island": 2922.0,
+                Presidio: 1663.0,
+                "Lincoln Park": 1337.0,
+                Seacliff: 1123.0,
+                "McLaren Park": 1035.0,
+            };
+
+            const averageIncidents =
+                Object.values(incidentData).reduce((a, b) => a + b, 0) /
+                Object.keys(incidentData).length;
+
             function selectCity(city) {
                 document.getElementById("selected-city").innerText = city;
+                const cityIncidents = incidentData[city];
+                const timesComparison = (
+                    cityIncidents / averageIncidents
+                ).toFixed(2);
+                const safetyMessage =
+                    cityIncidents > averageIncidents
+                        ? `<span class="highlight">${city}</span> is <span class="highlight">${timesComparison} times</span> more dangerous than the average neighborhood with <span class="highlight">${cityIncidents}</span> incidents since 2018. <br /><br />`
+                        : `<span class="highlight">${city}</span> is <span class="highlight">${(
+                              1 / timesComparison
+                          ).toFixed(
+                              2
+                          )} times</span> safer than the average neighborhood with <span class="highlight">${cityIncidents}</span> incidents since 2018.
+                          <br /><br />`;
+                document.getElementById("safety-message").innerHTML =
+                    safetyMessage;
             }
         </script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
