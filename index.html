@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Jua&family=Manrope&display=swap"
+            rel="stylesheet"
+        />
+        <title>What's Safe in SF?</title>
+        <style>
+            @font-face {
+                font-family: "PPEditorialNew-Italic";
+                src: url("fonts/PPEditorialNew-Italic.otf") format("opentype");
+            }
+            @font-face {
+                font-family: "PPEditorialNew-UltralightItalic";
+                src: url("fonts/PPEditorialNew-UltralightItalic.otf")
+                    format("opentype");
+            }
+            @font-face {
+                font-family: "PPEditorialNew-Ultralight";
+                src: url("fonts/PPEditorialNew-Ultralight.otf")
+                    format("opentype");
+            }
+            @font-face {
+                font-family: "PPEditorialNew-UltraboldItalic";
+                src: url("fonts/PPEditorialNew-UltraboldItalic.otf")
+                    format("opentype");
+            }
+            @font-face {
+                font-family: "PPEditorialNew-Ultrabold";
+                src: url("fonts/PPEditorialNew-Ultrabold.otf")
+                    format("opentype");
+            }
+            @font-face {
+                font-family: "PPEditorialNew-Regular";
+                src: url("fonts/PPEditorialNew-Regular.otf") format("opentype");
+            }
+            @font-face {
+                font-family: "TestUntitledSans-Regular";
+                src: url("fonts/TestUntitledSans-Regular.otf")
+                    format("opentype");
+            }
+            @font-face {
+                font-family: "TestUntitledSans-Medium";
+                src: url("fonts/TestUntitledSans-Medium.otf") format("opentype");
+            }
+
+            .ibm-plex-mono-thin {
+                font-family: "IBM Plex Mono", monospace;
+                font-weight: 100;
+                font-style: normal;
+            }
+
+            .ibm-plex-mono-extralight {
+                font-family: "IBM Plex Mono", monospace;
+                font-weight: 200;
+                font-style: normal;
+            }
+
+            .ibm-plex-mono-light {
+                font-family: "IBM Plex Mono", monospace;
+                font-weight: 300;
+                font-style: normal;
+            }
+
+            .ibm-plex-mono-regular {
+                font-family: "IBM Plex Mono", monospace;
+                font-weight: 400;
+                font-style: normal;
+            }
+
+            .ibm-plex-mono-medium {
+                font-family: "IBM Plex Mono", monospace;
+                font-weight: 500;
+                font-style: normal;
+            }
+
+            .ibm-plex-mono-semibold {
+                font-family: "IBM Plex Mono", monospace;
+                font-weight: 600;
+                font-style: normal;
+            }
+
+            .ibm-plex-mono-bold {
+                font-family: "IBM Plex Mono", monospace;
+                font-weight: 700;
+                font-style: normal;
+            }
+
+            .ibm-plex-mono-thin-italic {
+                font-family: "IBM Plex Mono", monospace;
+                font-weight: 100;
+                font-style: italic;
+            }
+
+            .ibm-plex-mono-extralight-italic {
+                font-family: "IBM Plex Mono", monospace;
+                font-weight: 200;
+                font-style: italic;
+            }
+
+            .ibm-plex-mono-light-italic {
+                font-family: "IBM Plex Mono", monospace;
+                font-weight: 300;
+                font-style: italic;
+            }
+
+            .ibm-plex-mono-regular-italic {
+                font-family: "IBM Plex Mono", monospace;
+                font-weight: 400;
+                font-style: italic;
+            }
+
+            .ibm-plex-mono-medium-italic {
+                font-family: "IBM Plex Mono", monospace;
+                font-weight: 500;
+                font-style: italic;
+            }
+
+            .ibm-plex-mono-semibold-italic {
+                font-family: "IBM Plex Mono", monospace;
+                font-weight: 600;
+                font-style: italic;
+            }
+
+            .ibm-plex-mono-bold-italic {
+                font-family: "IBM Plex Mono", monospace;
+                font-weight: 700;
+                font-style: italic;
+            }
+
+            a {
+                color: #fd8d3c;
+            }
+
+            body {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                height: 100vh;
+                overflow-y: auto;
+                background-color: #f8f8f8;
+                margin: 0;
+                padding: 0;
+                font-family: "PPEditorialNew-Regular";
+            }
+            .main-select {
+                font-size: 3rem;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .main-select h1 {
+                margin-top: 0;
+            }
+
+            .main-header {
+                font-size: 3rem;
+                margin: 0;
+            }
+            .city-select {
+                font-family: "PPEditorialNew-Regular";
+                font-size: 3rem;
+                cursor: pointer;
+                border-bottom: 2px solid #000;
+                padding: 0;
+                margin-top: 0;
+                margin-left: 15px;
+                position: relative;
+            }
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #f9f9f9;
+                min-width: 160px;
+                max-height: 200px;
+                overflow-y: auto;
+                box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+                z-index: 1;
+            }
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                font-size: 1.5rem;
+                font-family: "PPEditorialNew-Regular";
+                display: block;
+            }
+            .dropdown-content a:hover {
+                background-color: #f1f1f1;
+            }
+            .city-select:hover .dropdown-content {
+                display: block;
+            }
+            .content {
+                width: 500px;
+                font-family: "TestUntitledSans-Regular";
+            }
+
+            .references-title {
+                font-family: "PPEditorialNew-Regular", serif;
+                font-size: 1.5rem;
+                margin-bottom: 10px;
+            }
+
+            .references-content {
+                font-family: "TestUntitledSans-Regular", sans-serif;
+                font-size: 1rem;
+            }
+
+            .references-content p {
+                margin-bottom: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <div
+            style="
+                text-align: center;
+                font-family: 'IBM Plex Mono';
+                font-size: 1rem;
+                margin-top: 40px;
+                margin-bottom: 10px;
+            "
+        >
+            By
+            <a href="https://hudzah.com/" target="_blank" style="color: #fd8d3c"
+                >HudZah</a
+            >
+        </div>
+        <div class="main-select">
+            <h1 class="main-header">How Safe is</h1>
+            <div class="city-select">
+                <span id="selected-city">San Francisco</span>
+                <div class="dropdown-content">
+                    <a href="#" onclick="selectCity('Mission')">Mission</a>
+                    <a href="#" onclick="selectCity('Tenderloin')"
+                        >Tenderloin</a
+                    >
+                    <a href="#" onclick="selectCity('South of Market')"
+                        >South of Market</a
+                    >
+                    <a
+                        href="#"
+                        onclick="selectCity('Financial District/South Beach')"
+                        >Financial District/South Beach</a
+                    >
+                    <a href="#" onclick="selectCity('Bayview Hunters Point')"
+                        >Bayview Hunters Point</a
+                    >
+                    <a href="#" onclick="selectCity('North Beach')"
+                        >North Beach</a
+                    >
+                    <a href="#" onclick="selectCity('Western Addition')"
+                        >Western Addition</a
+                    >
+                    <a href="#" onclick="selectCity('Sunset/Parkside')"
+                        >Sunset/Parkside</a
+                    >
+                    <a href="#" onclick="selectCity('Nob Hill')">Nob Hill</a>
+                    <a href="#" onclick="selectCity('Castro/Upper Market')"
+                        >Castro/Upper Market</a
+                    >
+                    <a href="#" onclick="selectCity('Marina')">Marina</a>
+                    <a href="#" onclick="selectCity('Hayes Valley')"
+                        >Hayes Valley</a
+                    >
+                    <a href="#" onclick="selectCity('Russian Hill')"
+                        >Russian Hill</a
+                    >
+                    <a href="#" onclick="selectCity('Outer Richmond')"
+                        >Outer Richmond</a
+                    >
+                    <a href="#" onclick="selectCity('West of Twin Peaks')"
+                        >West of Twin Peaks</a
+                    >
+                    <a href="#" onclick="selectCity('Bernal Heights')"
+                        >Bernal Heights</a
+                    >
+                    <a href="#" onclick="selectCity('Chinatown')">Chinatown</a>
+                    <a href="#" onclick="selectCity('Pacific Heights')"
+                        >Pacific Heights</a
+                    >
+                    <a href="#" onclick="selectCity('Mission Bay')"
+                        >Mission Bay</a
+                    >
+                    <a href="#" onclick="selectCity('Excelsior')">Excelsior</a>
+                    <a href="#" onclick="selectCity('Potrero Hill')"
+                        >Potrero Hill</a
+                    >
+                    <a href="#" onclick="selectCity('Haight Ashbury')"
+                        >Haight Ashbury</a
+                    >
+                    <a href="#" onclick="selectCity('Outer Mission')"
+                        >Outer Mission</a
+                    >
+                    <a href="#" onclick="selectCity('Inner Richmond')"
+                        >Inner Richmond</a
+                    >
+                    <a href="#" onclick="selectCity('Lakeshore')">Lakeshore</a>
+                    <a href="#" onclick="selectCity('Inner Sunset')"
+                        >Inner Sunset</a
+                    >
+                    <a href="#" onclick="selectCity('Lone Mountain/USF')"
+                        >Lone Mountain/USF</a
+                    >
+                    <a href="#" onclick="selectCity('Portola')">Portola</a>
+                    <a href="#" onclick="selectCity('Noe Valley')"
+                        >Noe Valley</a
+                    >
+                    <a href="#" onclick="selectCity('Visitacion Valley')"
+                        >Visitacion Valley</a
+                    >
+                    <a
+                        href="#"
+                        onclick="selectCity('Oceanview/Merced/Ingleside')"
+                        >Oceanview/Merced/Ingleside</a
+                    >
+                    <a href="#" onclick="selectCity('Golden Gate Park')"
+                        >Golden Gate Park</a
+                    >
+                    <a href="#" onclick="selectCity('Japantown')">Japantown</a>
+                    <a href="#" onclick="selectCity('Presidio Heights')"
+                        >Presidio Heights</a
+                    >
+                    <a href="#" onclick="selectCity('Glen Park')">Glen Park</a>
+                    <a href="#" onclick="selectCity('Twin Peaks')"
+                        >Twin Peaks</a
+                    >
+                    <a href="#" onclick="selectCity('Treasure Island')"
+                        >Treasure Island</a
+                    >
+                    <a href="#" onclick="selectCity('Presidio')">Presidio</a>
+                    <a href="#" onclick="selectCity('Lincoln Park')"
+                        >Lincoln Park</a
+                    >
+                    <a href="#" onclick="selectCity('Seacliff')">Seacliff</a>
+                    <a href="#" onclick="selectCity('McLaren Park')"
+                        >McLaren Park</a
+                    >
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="info-container" style="margin-top: 20px">
+                Since 2018, the City of San Francisco has been working to
+                improve the safety of its neighborhoods. This project visualizes
+                the data that the City has collected over the past year to show
+                how the safety of neighborhoods has changed.
+
+                <br />
+                <br />
+
+                <p>
+                    When analyzing the safety of San Francisco neighborhoods,
+                    it's clear that some areas experience significantly higher
+                    crime rates than others. For instance, the
+                    <span style="color: #fd8d3c; font-weight: bold"
+                        >Mission</span
+                    >
+                    neighborhood tops the list with a staggering
+                    <span style="color: #fd8d3c; font-weight: bold"
+                        >85,671</span
+                    >
+                    incidents, closely followed by
+                    <span style="color: #fd8d3c; font-weight: bold"
+                        >Tenderloin</span
+                    >. On average, the most dangerous neighborhoods are
+                    <span style="color: #fd8d3c; font-weight: bold"
+                        >6 times</span
+                    >
+                    more prone to crime than the average.
+                </p>
+
+                <canvas id="incidentsChart" width="500" height="500"></canvas>
+
+                <p>
+                    Oddly, Fridays see the highest number of incidents at
+                    <span style="color: #fd8d3c; font-weight: bold"
+                        >130,389</span
+                    >
+                    while Sundays have the least with
+                    <span style="color: #fd8d3c; font-weight: bold"
+                        >111,734</span
+                    >
+                    incidents.
+                </p>
+                <canvas
+                    id="incidentDaysChart"
+                    width="500"
+                    height="300"
+                ></canvas>
+
+                <p>
+                    The month of January records the highest number of incidents
+                    at
+                    <span style="color: #fd8d3c; font-weight: bold"
+                        >79,137</span
+                    >
+                    while November has the fewest with
+                    <span style="color: #fd8d3c; font-weight: bold"
+                        >65,721</span
+                    >
+                    incidents.
+                </p>
+                <canvas
+                    id="incidentMonthsChart"
+                    width="500"
+                    height="300"
+                ></canvas>
+
+                <p>
+                    Analyzing the intersections of where the most incidents
+                    occured is a great way to get a sense of the neighborhoods
+                    that are most dangerous. The average number of incidents per
+                    intersection is
+                    <span style="color: #fd8d3c; font-weight: bold">106</span>
+                    meaning that the most dangerous intersection, Market/Powell,
+                    is
+                    <span style="color: #fd8d3c; font-weight: bold"
+                        >45 times</span
+                    >
+                    more dangerous than the average.
+                </p>
+
+                <canvas
+                    id="topIntersectionsChart"
+                    width="500"
+                    height="400"
+                ></canvas>
+
+                <br />
+
+                <p>
+                    Below, is a Choropleth Map of the most dangerous
+                    neighborhoods in San Francisco. The map shows the number of
+                    incidents in each neighborhood, with the color representing
+                    the number of incidents. The darker the color, the more
+                    incidents the neighborhood has.
+                </p>
+
+                <br />
+                <iframe
+                    src="neighborhood_choropleth.html"
+                    width="100%"
+                    height="400px"
+                    style="
+                        border: none;
+                        transition: box-shadow 0.3s ease-in-out;
+                    "
+                    onmouseover="this.style.boxShadow='6px 6px 0 #fd8d3c'"
+                    onmouseout="this.style.boxShadow='none'"
+                ></iframe>
+                <div
+                    style="
+                        text-align: center;
+                        color: grey;
+                        font-size: 0.9rem;
+                        margin-top: 5px;
+                    "
+                >
+                    Neighborhood Choropleth Map
+                </div>
+                <br />
+                <br />
+                <iframe
+                    src="neighborhood_heatmap.html"
+                    width="100%"
+                    height="400px"
+                    style="
+                        border: none;
+                        transition: box-shadow 0.3s ease-in-out;
+                    "
+                    onmouseover="this.style.boxShadow='6px 6px 0 #fd8d3c'"
+                    onmouseout="this.style.boxShadow='none'"
+                ></iframe>
+                <div
+                    style="
+                        text-align: center;
+                        color: grey;
+                        font-size: 0.9rem;
+                        margin-top: 5px;
+                    "
+                >
+                    Neighborhood Heatmap
+                </div>
+                <br />
+                <br />
+                <div class="references">
+                    <h3 class="references-title">References</h3>
+                    <div class="references-content">
+                        <p>
+                            <a
+                                href="https://data.sfgov.org/-/Analysis-Neighborhoods/p5b7-5n3h"
+                                target="_blank"
+                                rel="noopener"
+                            >
+                                Analysis Neighborhoods Data
+                            </a>
+                        </p>
+                        <p>
+                            <a
+                                href="https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-2018-to-Present/wg3w-h783/about_data"
+                                target="_blank"
+                                rel="noopener"
+                            >
+                                Police Department Incident Reports Data
+                            </a>
+                        </p>
+                        <p>
+                            <a
+                                href="https://gist.github.com/megpay/1884c76a43f26fa1206bf2111e619646"
+                                target="_blank"
+                                rel="noopener"
+                            >
+                                San Francisco Neighborhood Shapefiles
+                            </a>
+                        </p>
+                        <p>
+                            Shoutout to
+                            <a
+                                href="https://www.rapfeud.com/"
+                                rel="noopener"
+                                target="_blank"
+                                >Josh Wolk</a
+                            >
+                            for font inspiration.
+                        </p>
+                    </div>
+                </div>
+
+                <br />
+                <br />
+            </div>
+        </div>
+        <script>
+            function selectCity(city) {
+                document.getElementById("selected-city").innerText = city;
+            }
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <script>
+            // Get the canvas element
+            const ctx = document
+                .getElementById("incidentsChart")
+                .getContext("2d");
+
+            // Extract the neighborhood names and incident counts from the data
+            const neighborhoods = [
+                "Mission",
+                "Tenderloin",
+                "South of Market",
+                "Financial District/South Beach",
+                "Bayview Hunters Point",
+                "North Beach",
+                "Western Addition",
+                "Sunset/Parkside",
+                "Nob Hill",
+                "Castro/Upper Market",
+                "Marina",
+                "Hayes Valley",
+                "Russian Hill",
+                "Outer Richmond",
+                "West of Twin Peaks",
+                "Bernal Heights",
+                "Chinatown",
+                "Pacific Heights",
+                "Mission Bay",
+                "Excelsior",
+                "Potrero Hill",
+                "Haight Ashbury",
+                "Outer Mission",
+                "Inner Richmond",
+                "Lakeshore",
+                "Inner Sunset",
+                "Lone Mountain/USF",
+                "Portola",
+                "Noe Valley",
+                "Visitacion Valley",
+                "Oceanview/Merced/Ingleside",
+                "Golden Gate Park",
+                "Japantown",
+                "Presidio Heights",
+                "Glen Park",
+                "Twin Peaks",
+                "Treasure Island",
+                "Presidio",
+                "Lincoln Park",
+                "Seacliff",
+                "McLaren Park",
+            ];
+
+            const incidentCounts = [
+                85671, 84209, 65911, 62944, 53675, 26862, 26488, 24354, 23187,
+                22974, 22414, 22058, 19401, 18385, 16545, 15490, 14977, 14433,
+                14237, 13965, 13556, 13111, 11979, 10820, 10571, 10530, 9909,
+                9475, 9028, 9023, 8780, 8519, 8293, 5300, 4627, 4099, 2922,
+                1663, 1337, 1123, 1035,
+            ];
+
+            // Create the chart
+            new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: neighborhoods,
+                    datasets: [
+                        {
+                            label: "Number of Incidents",
+                            data: incidentCounts,
+                            backgroundColor: "rgba(253, 141, 60, 0.8)",
+                            borderColor: "rgba(253, 141, 60, 1)",
+                            borderWidth: 1,
+                        },
+                    ],
+                },
+                options: {
+                    indexAxis: "y",
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            ticks: {
+                                font: {
+                                    family: "IBM Plex Mono",
+                                    weight: "400",
+                                },
+                            },
+                        },
+                        y: {
+                            ticks: {
+                                font: {
+                                    family: "IBM Plex Mono",
+                                    weight: "400",
+                                },
+                            },
+                        },
+                    },
+                    plugins: {
+                        legend: {
+                            labels: {
+                                font: {
+                                    family: "IBM Plex Mono",
+                                    weight: "400",
+                                },
+                            },
+                        },
+                        title: {
+                            display: true,
+                            text: "Incidents by Neighborhood",
+                            font: {
+                                family: "IBM Plex Mono",
+                                weight: "600",
+                            },
+                        },
+                    },
+                },
+            });
+
+            // Incident Days Chart
+            const incidentDaysCtx = document
+                .getElementById("incidentDaysChart")
+                .getContext("2d");
+            const incidentDays = [
+                "Friday",
+                "Wednesday",
+                "Thursday",
+                "Monday",
+                "Tuesday",
+                "Saturday",
+                "Sunday",
+            ];
+            const incidentDayCounts = [
+                130389, 127011, 121958, 120250, 119934, 119619, 111734,
+            ];
+
+            new Chart(incidentDaysCtx, {
+                type: "bar",
+                data: {
+                    labels: incidentDays,
+                    datasets: [
+                        {
+                            label: "Number of Incidents",
+                            data: incidentDayCounts,
+                            backgroundColor: "rgba(253, 141, 60, 0.8)",
+                            borderColor: "rgba(253, 141, 60, 1)",
+                            borderWidth: 1,
+                        },
+                    ],
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            min: 100000,
+                            max: 140000,
+                            ticks: {
+                                font: {
+                                    family: "IBM Plex Mono",
+                                    weight: "400",
+                                },
+                            },
+                        },
+                        x: {
+                            ticks: {
+                                font: {
+                                    family: "IBM Plex Mono",
+                                    weight: "400",
+                                },
+                            },
+                        },
+                    },
+                    plugins: {
+                        legend: {
+                            display: false,
+                        },
+                        title: {
+                            display: true,
+                            text: "Incidents per Day of the Week",
+                            font: {
+                                family: "IBM Plex Mono",
+                                weight: "600",
+                            },
+                        },
+                    },
+                },
+            });
+
+            // Incident by Intersection Chart
+            const topIntersectionsCtx = document
+                .getElementById("topIntersectionsChart")
+                .getContext("2d");
+            const topIntersections = [
+                "MARKET/POWELL",
+                "BOARDMAN/BRYANT",
+                "EDDY/JONES",
+                "POWELL/OFARRELL",
+                "20TH/WINSTON",
+                "08TH/GROVE/HYDE/MARKET",
+                "16TH/MISSION",
+                "UNITED NATIONS/LEAVENWORTH",
+                "04TH/LONG BRIDGE",
+                "STEVENSON/07TH/ODD",
+            ];
+            const topIntersectionCounts = [
+                4765, 3975, 3881, 3768, 3394, 3392, 3184, 2997, 2779, 2675,
+            ];
+
+            new Chart(topIntersectionsCtx, {
+                type: "bar",
+                data: {
+                    labels: topIntersections,
+                    datasets: [
+                        {
+                            label: "Number of Incidents",
+                            data: topIntersectionCounts,
+                            backgroundColor: "rgba(253, 141, 60, 0.8)",
+                            borderColor: "rgba(253, 141, 60, 1)",
+                            borderWidth: 1,
+                        },
+                    ],
+                },
+                options: {
+                    indexAxis: "y",
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            ticks: {
+                                precision: 0,
+                                font: {
+                                    family: "IBM Plex Mono",
+                                    weight: "400",
+                                },
+                            },
+                        },
+                        y: {
+                            ticks: {
+                                font: {
+                                    family: "IBM Plex Mono",
+                                    weight: "400",
+                                },
+                            },
+                        },
+                    },
+                    plugins: {
+                        legend: {
+                            display: false,
+                        },
+                        title: {
+                            display: true,
+                            text: "Top 10 Intersections with Most Incidents",
+                            font: {
+                                family: "IBM Plex Mono",
+                                weight: "600",
+                            },
+                        },
+                    },
+                },
+            });
+
+            // Incident Months Chart
+            const incidentMonthsCtx = document
+                .getElementById("incidentMonthsChart")
+                .getContext("2d");
+            const incidentMonths = [
+                "Jan",
+                "Feb",
+                "Mar",
+                "Apr",
+                "May",
+                "Jun",
+                "Jul",
+                "Aug",
+                "Sep",
+                "Oct",
+                "Nov",
+                "Dec",
+            ];
+            const incidentMonthCounts = [
+                79137, 72320, 74911, 71963, 69421, 66852, 72105, 72199, 69193,
+                70624, 65721, 66449,
+            ];
+
+            new Chart(incidentMonthsCtx, {
+                type: "line",
+                data: {
+                    labels: incidentMonths,
+                    datasets: [
+                        {
+                            label: "Number of Incidents",
+                            data: incidentMonthCounts,
+                            fill: false,
+                            borderColor: "rgba(253, 141, 60, 1)",
+                            tension: 0.1,
+                        },
+                    ],
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            min: 60000,
+                            max: 80000,
+                            ticks: {
+                                font: {
+                                    family: "IBM Plex Mono",
+                                    weight: "400",
+                                },
+                            },
+                        },
+                        x: {
+                            ticks: {
+                                font: {
+                                    family: "IBM Plex Mono",
+                                    weight: "400",
+                                },
+                            },
+                        },
+                    },
+                    plugins: {
+                        legend: {
+                            display: false,
+                        },
+                        title: {
+                            display: true,
+                            text: "Incidents per Month",
+                            font: {
+                                family: "IBM Plex Mono",
+                                weight: "600",
+                            },
+                        },
+                    },
+                },
+            });
+
+            // Incident Years Chart
+            const incidentYearsCtx = document
+                .getElementById("incidentYearsChart")
+                .getContext("2d");
+            const incidentYears = [2018, 2019, 2020, 2021, 2022, 2023, 2024];
+            const incidentYearCounts = [
+                151551, 146670, 117420, 128252, 135504, 132411, 39087,
+            ];
+
+            new Chart(incidentYearsCtx, {
+                type: "bar",
+                data: {
+                    labels: incidentYears,
+                    datasets: [
+                        {
+                            label: "Number of Incidents",
+                            data: incidentYearCounts,
+                            backgroundColor: "rgba(253, 141, 60, 0.8)",
+                            borderColor: "rgba(253, 141, 60, 1)",
+                            borderWidth: 1,
+                        },
+                    ],
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                font: {
+                                    family: "IBM Plex Mono",
+                                    weight: "400",
+                                },
+                            },
+                        },
+                        x: {
+                            ticks: {
+                                font: {
+                                    family: "IBM Plex Mono",
+                                    weight: "400",
+                                },
+                            },
+                        },
+                    },
+                    plugins: {
+                        legend: {
+                            display: false,
+                        },
+                        title: {
+                            display: true,
+                            text: "Incidents per Year",
+                            font: {
+                                family: "IBM Plex Mono",
+                                weight: "600",
+                            },
+                        },
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>
