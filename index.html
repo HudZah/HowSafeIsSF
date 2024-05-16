@@ -282,11 +282,15 @@
                 margin-left: 10px;
                 margin-right: 10px;
                 justify-content: center;
+                word-break: break-word;
+                white-space: normal;
             }
 
             #selected-city {
                 font-size: 2rem;
                 text-align: center;
+                word-break: break-word;
+                white-space: normal;
             }
 
             .dropdown-content {
@@ -304,6 +308,12 @@
             iframe {
                 width: 100%;
             }
+
+            canvas {
+                width: 100%;
+                margin-left: 10px;
+                margin-right: 10px;
+            }
         }
     </style>
 </head>
@@ -313,14 +323,14 @@
     </div>
     <div class="main-select">
         <h1 class="main-header">How Safe is</h1>
-        <div class="city-select">
+        <div class="city-select" onclick="toggleDropdown()">
             <h1 id="selected-city">San Francisco</h1>
             <div class="dropdown-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256">
                     <path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"></path>
                 </svg>
             </div>
-            <div class="dropdown-content">
+            <div class="dropdown-content" id="dropdown-content">
                 <a href="#" onclick="selectCity('Mission')">Mission</a>
                 <a href="#" onclick="selectCity('Tenderloin')">Tenderloin</a>
                 <a href="#" onclick="selectCity('South of Market')">South of Market</a>
@@ -495,6 +505,11 @@
 
             const averageIncidents = Object.values(incidentData).reduce((a, b) => a + b, 0) / Object.keys(incidentData).length;
 
+            function toggleDropdown() {
+            const dropdown = document.getElementById('dropdown-content');
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+            }
+
             function selectCity(city) {
                 document.getElementById("selected-city").innerText = city;
                 const cityIncidents = incidentData[city];
@@ -504,6 +519,16 @@
                     : `<p class="body-text"><span class="highlight">${city}</span> is <span class="highlight">${(1 / timesComparison).toFixed(2)} times</span> more safer than the average neighborhood with <span class="highlight">${cityIncidents}</span> incidents since 2018. <br /></p>`;
                 document.getElementById("safety-message").innerHTML = safetyMessage;
             }
+
+            window.onclick = function(event) {
+            if (!event.target.matches('.city-select') && !event.target.matches('.city-select *')) {
+                const dropdown = document.getElementById('dropdown-content');
+                if (dropdown.style.display === 'block') {
+                    dropdown.style.display = 'none';
+                    }
+                }
+            }
+
         </script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
