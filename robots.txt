@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /fonts/
+Disallow: /favicon.png
+Disallow: /neighborhood_heatmap.html
+Disallow: /neighborhood_choropleth.html
