@@ -388,6 +388,14 @@
 
                 <canvas id="incidentsChart" width="500" height="500"></canvas>
 
+                <p>
+                    An incident is defined as a reported crime that occurs in a
+                    neighborhood. This includes such as including crimes such as
+                    Larceny Theft, Malicious Mischief, Assault, Burglary, Motor
+                    Vehicle Theft, Fraud, Lost Property, Warrant, Drug Offense,
+                    Robbery, Missing Person and more.
+                </p>
+
                 <h3 class="references-title">Friday the 13th?</h3>
 
                 <p>
@@ -570,47 +578,47 @@
         </div>
         <script>
             const incidentData = {
-                Mission: 85671.0,
-                Tenderloin: 84209.0,
-                "South of Market": 65911.0,
-                "Financial District/South Beach": 62944.0,
-                "Bayview Hunters Point": 53675.0,
-                "North Beach": 26862.0,
-                "Western Addition": 26488.0,
-                "Sunset/Parkside": 24354.0,
-                "Nob Hill": 23187.0,
-                "Castro/Upper Market": 22974.0,
-                Marina: 22414.0,
-                "Hayes Valley": 22058.0,
-                "Russian Hill": 19401.0,
-                "Outer Richmond": 18385.0,
-                "West of Twin Peaks": 16545.0,
-                "Bernal Heights": 15490.0,
-                Chinatown: 14977.0,
-                "Pacific Heights": 14433.0,
-                "Mission Bay": 14237.0,
-                Excelsior: 13965.0,
-                "Potrero Hill": 13556.0,
-                "Haight Ashbury": 13111.0,
-                "Outer Mission": 11979.0,
-                "Inner Richmond": 10820.0,
-                Lakeshore: 10571.0,
-                "Inner Sunset": 10530.0,
-                "Lone Mountain/USF": 9909.0,
-                Portola: 9475.0,
-                "Noe Valley": 9028.0,
-                "Visitacion Valley": 9023.0,
-                "Oceanview/Merced/Ingleside": 8780.0,
-                "Golden Gate Park": 8519.0,
-                Japantown: 8293.0,
-                "Presidio Heights": 5300.0,
-                "Glen Park": 4627.0,
-                "Twin Peaks": 4099.0,
-                "Treasure Island": 2922.0,
-                Presidio: 1663.0,
-                "Lincoln Park": 1337.0,
-                Seacliff: 1123.0,
-                "McLaren Park": 1035.0,
+                Mission: 85671,
+                Tenderloin: 84209,
+                "South of Market": 65911,
+                "Financial District/South Beach": 62944,
+                "Bayview Hunters Point": 53675,
+                "North Beach": 26862,
+                "Western Addition": 26488,
+                "Sunset/Parkside": 24354,
+                "Nob Hill": 23187,
+                "Castro/Upper Market": 22974,
+                Marina: 22414,
+                "Hayes Valley": 22058,
+                "Russian Hill": 19401,
+                "Outer Richmond": 18385,
+                "West of Twin Peaks": 16545,
+                "Bernal Heights": 15490,
+                Chinatown: 14977,
+                "Pacific Heights": 14433,
+                "Mission Bay": 14237,
+                Excelsior: 13965,
+                "Potrero Hill": 13556,
+                "Haight Ashbury": 13111,
+                "Outer Mission": 11979,
+                "Inner Richmond": 10820,
+                Lakeshore: 10571,
+                "Inner Sunset": 10530,
+                "Lone Mountain/USF": 9909,
+                Portola: 9475,
+                "Noe Valley": 9028,
+                "Visitacion Valley": 9023,
+                "Oceanview/Merced/Ingleside": 8780,
+                "Golden Gate Park": 8519,
+                Japantown: 8293,
+                "Presidio Heights": 5300,
+                "Glen Park": 4627,
+                "Twin Peaks": 4099,
+                "Treasure Island": 2922,
+                Presidio: 1663,
+                "Lincoln Park": 1337,
+                Seacliff: 1123,
+                "McLaren Park": 1035,
             };
 
             const averageIncidents =
@@ -644,59 +652,13 @@
                 .getElementById("incidentsChart")
                 .getContext("2d");
 
-            // Extract the neighborhood names and incident counts from the data
-            const neighborhoods = [
-                "Mission",
-                "Tenderloin",
-                "South of Market",
-                "Financial District/South Beach",
-                "Bayview Hunters Point",
-                "North Beach",
-                "Western Addition",
-                "Sunset/Parkside",
-                "Nob Hill",
-                "Castro/Upper Market",
-                "Marina",
-                "Hayes Valley",
-                "Russian Hill",
-                "Outer Richmond",
-                "West of Twin Peaks",
-                "Bernal Heights",
-                "Chinatown",
-                "Pacific Heights",
-                "Mission Bay",
-                "Excelsior",
-                "Potrero Hill",
-                "Haight Ashbury",
-                "Outer Mission",
-                "Inner Richmond",
-                "Lakeshore",
-                "Inner Sunset",
-                "Lone Mountain/USF",
-                "Portola",
-                "Noe Valley",
-                "Visitacion Valley",
-                "Oceanview/Merced/Ingleside",
-                "Golden Gate Park",
-                "Japantown",
-                "Presidio Heights",
-                "Glen Park",
-                "Twin Peaks",
-                "Treasure Island",
-                "Presidio",
-                "Lincoln Park",
-                "Seacliff",
-                "McLaren Park",
-            ];
-
-            const incidentCounts = [
-                85671, 84209, 65911, 62944, 53675, 26862, 26488, 24354, 23187,
-                22974, 22414, 22058, 19401, 18385, 16545, 15490, 14977, 14433,
-                14237, 13965, 13556, 13111, 11979, 10820, 10571, 10530, 9909,
-                9475, 9028, 9023, 8780, 8519, 8293, 5300, 4627, 4099, 2922,
-                1663, 1337, 1123, 1035,
-            ];
-
+            const sortedIncidentData = Object.entries(incidentData)
+                .sort(([, a], [, b]) => b - a)
+                .slice(0, 30);
+            const neighborhoods = sortedIncidentData.map(
+                ([neighborhood]) => neighborhood
+            );
+            const incidentCounts = sortedIncidentData.map(([, count]) => count);
             // Create the chart
             new Chart(ctx, {
                 type: "bar",
@@ -730,6 +692,7 @@
                                     family: "IBM Plex Mono",
                                     weight: "400",
                                 },
+                                autoSkip: false,
                             },
                         },
                     },
@@ -744,7 +707,7 @@
                         },
                         title: {
                             display: true,
-                            text: "Incidents by Neighborhood",
+                            text: "Incidents By Top 30 Neighborhoods",
                             font: {
                                 family: "IBM Plex Mono",
                                 weight: "600",
