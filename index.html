@@ -758,6 +758,9 @@
                                     family: "IBM Plex Mono",
                                     weight: "400",
                                 },
+                                callback: function(value) {
+                                    return value / 1000 + 'k';
+                                }
                             },
                         },
                         x: {
