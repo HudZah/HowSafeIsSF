@@ -507,6 +507,8 @@
 
             const averageIncidents = Object.values(incidentData).reduce((a, b) => a + b, 0) / Object.keys(incidentData).length;
 
+            console.log(averageIncidents);
+
             function toggleDropdown() {
             const dropdown = document.getElementById('dropdown-content');
             dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
@@ -516,9 +518,10 @@
                 document.getElementById("selected-city").innerText = city;
                 const cityIncidents = incidentData[city];
                 const timesComparison = (cityIncidents / averageIncidents).toFixed(2);
-                const safetyMessage = cityIncidents > averageIncidents
-                    ? `<p class="body-text"><span class="highlight">${city}</span> is <span class="highlight">${timesComparison} times</span> more dangerous than the average neighborhood with <span class="highlight">${cityIncidents}</span> incidents since 2018. <br /></p>`
-                    : `<p class="body-text"><span class="highlight">${city}</span> is <span class="highlight">${(1 / timesComparison).toFixed(2)} times</span> more safer than the average neighborhood with <span class="highlight">${cityIncidents}</span> incidents since 2018. <br /></p>`;
+                const averageNeighborhoodIncidents = 19606;
+                const safetyMessage = cityIncidents > averageNeighborhoodIncidents
+                    ? `<p class="body-text"><span class="highlight">${city}</span> is <span class="highlight">${timesComparison} times</span> more dangerous than the average neighborhood with <span class="highlight">${cityIncidents}</span> incidents since 2018. The average neighborhood has <span class="highlight">${averageNeighborhoodIncidents}</span> incidents. <br /></p>`
+                    : `<p class="body-text"><span class="highlight">${city}</span> is <span class="highlight">${(1 / timesComparison).toFixed(2)} times</span> safer than the average neighborhood with <span class="highlight">${cityIncidents}</span> incidents since 2018. The average neighborhood has <span class="highlight">${averageNeighborhoodIncidents}</span> incidents. <br /></p>`;
                 document.getElementById("safety-message").innerHTML = safetyMessage;
             }
 
