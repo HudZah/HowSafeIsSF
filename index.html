@@ -605,9 +605,8 @@
 
             // Incident Days Chart
             const incidentDaysCtx = document.getElementById("incidentDaysChart").getContext("2d");
-            const incidentDays = ["Friday", "Wednesday", "Thursday", "Monday", "Tuesday", "Saturday", "Sunday"];
-            const incidentDayCounts = [130389, 127011, 121958, 120250, 119934, 119619, 111734];
-
+            const incidentDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+            const incidentDayCounts = [120250, 119934, 127011, 121958, 130389, 119619, 111734];
             new Chart(incidentDaysCtx, {
                 type: "bar",
                 data: {
