@@ -254,10 +254,57 @@
             line-height: 1.9;
             font-size: 0.9rem;
         }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+
+            .main-select {
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+            }
+
+            .main-header {
+                font-size: 2rem;
+                text-align: center;
+                width: 100%;
+            }
+
+            .city-select {
+                margin-top: 10px;
+                width: 100%;
+                justify-content: center;
+            }
+
+            #selected-city {
+                font-size: 2rem;
+                text-align: center;
+            }
+
+            .dropdown-content {
+                width: 100%;
+            }
+
+            .content {
+                width: 100%;
+            }
+
+            .body-text {
+                font-size: 1rem;
+            }
+
+            iframe {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
-    <div style="text-align: center; font-family: 'TestUntitledSans-Regular'; font-size: 1rem; margin-top: 40px; margin-bottom: 10px;">
+    <div class="body-text" style="font-family: 'TestUntitledSans-Regular'; margin-top: 40px; margin-bottom: 10px;">
         By <a href="https://hudzah.com/" target="_blank" rel="noopener">HudZah</a>
     </div>
     <div class="main-select">
@@ -342,7 +389,6 @@
                 Analyzing the intersections of where the most incidents occured is a great way to get a sense of the neighborhoods that are most dangerous. The average number of incidents per intersection is <span class="highlight">106</span> meaning that the most dangerous intersection, Market/Powell, is <span class="highlight">45 times</span> more dangerous than the average.
             </p>
             <canvas id="topIntersectionsChart" width="500" height="400"></canvas>
-            <br />
             <h3 class="references-title">How Safe is SF?</h3>
             <p class="body-text">
                 Below, is a Choropleth Map of the most dangerous neighborhoods in San Francisco. The map shows the number of incidents in each neighborhood, with the color representing the number of incidents. 
