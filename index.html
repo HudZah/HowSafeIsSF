@@ -256,11 +256,13 @@
         }
 
         @media (max-width: 768px) {
-            body {
-                padding: 10px;
-                margin-left: 10px;
-                margin-right: 10px;
+            html, body {
+                overflow-x: hidden;
+                width: 100%;
+                margin: 0 10px;
+                padding: 0;
             }
+            
 
             .main-select {
                 flex-direction: column;
