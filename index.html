@@ -1,609 +1,396 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Jua&family=Manrope&display=swap"
-            rel="stylesheet"
-        />
-        <link rel="icon" type="image/png" href="favicon.png" />
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Jua&family=Manrope&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <title>How Safe is SF?</title>
+    <style>
+        @font-face {
+            font-family: "PPEditorialNew-Italic";
+            src: url("fonts/PPEditorialNew-Italic.otf") format("opentype");
+        }
+        @font-face {
+            font-family: "PPEditorialNew-UltralightItalic";
+            src: url("fonts/PPEditorialNew-UltralightItalic.otf") format("opentype");
+        }
+        @font-face {
+            font-family: "PPEditorialNew-Ultralight";
+            src: url("fonts/PPEditorialNew-Ultralight.otf") format("opentype");
+        }
+        @font-face {
+            font-family: "PPEditorialNew-UltraboldItalic";
+            src: url("fonts/PPEditorialNew-UltraboldItalic.otf") format("opentype");
+        }
+        @font-face {
+            font-family: "PPEditorialNew-Ultrabold";
+            src: url("fonts/PPEditorialNew-Ultrabold.otf") format("opentype");
+        }
+        @font-face {
+            font-family: "PPEditorialNew-Regular";
+            src: url("fonts/PPEditorialNew-Regular.otf") format("opentype");
+        }
+        @font-face {
+            font-family: "TestUntitledSans-Regular";
+            src: url("fonts/TestUntitledSans-Regular.otf") format("opentype");
+        }
+        @font-face {
+            font-family: "TestUntitledSans-Medium";
+            src: url("fonts/TestUntitledSans-Medium.otf") format("opentype");
+        }
 
-        <title>How Safe is SF?</title>
-        <style>
-            @font-face {
-                font-family: "PPEditorialNew-Italic";
-                src: url("fonts/PPEditorialNew-Italic.otf") format("opentype");
-            }
-            @font-face {
-                font-family: "PPEditorialNew-UltralightItalic";
-                src: url("fonts/PPEditorialNew-UltralightItalic.otf")
-                    format("opentype");
-            }
-            @font-face {
-                font-family: "PPEditorialNew-Ultralight";
-                src: url("fonts/PPEditorialNew-Ultralight.otf")
-                    format("opentype");
-            }
-            @font-face {
-                font-family: "PPEditorialNew-UltraboldItalic";
-                src: url("fonts/PPEditorialNew-UltraboldItalic.otf")
-                    format("opentype");
-            }
-            @font-face {
-                font-family: "PPEditorialNew-Ultrabold";
-                src: url("fonts/PPEditorialNew-Ultrabold.otf")
-                    format("opentype");
-            }
-            @font-face {
-                font-family: "PPEditorialNew-Regular";
-                src: url("fonts/PPEditorialNew-Regular.otf") format("opentype");
-            }
-            @font-face {
-                font-family: "TestUntitledSans-Regular";
-                src: url("fonts/TestUntitledSans-Regular.otf")
-                    format("opentype");
-            }
-            @font-face {
-                font-family: "TestUntitledSans-Medium";
-                src: url("fonts/TestUntitledSans-Medium.otf") format("opentype");
-            }
+        .ibm-plex-mono-thin {
+            font-family: "IBM Plex Mono", monospace;
+            font-weight: 100;
+            font-style: normal;
+        }
 
-            .ibm-plex-mono-thin {
-                font-family: "IBM Plex Mono", monospace;
-                font-weight: 100;
-                font-style: normal;
-            }
+        .ibm-plex-mono-extralight {
+            font-family: "IBM Plex Mono", monospace;
+            font-weight: 200;
+            font-style: normal;
+        }
 
-            .ibm-plex-mono-extralight {
-                font-family: "IBM Plex Mono", monospace;
-                font-weight: 200;
-                font-style: normal;
-            }
+        .ibm-plex-mono-light {
+            font-family: "IBM Plex Mono", monospace;
+            font-weight: 300;
+            font-style: normal;
+        }
 
-            .ibm-plex-mono-light {
-                font-family: "IBM Plex Mono", monospace;
-                font-weight: 300;
-                font-style: normal;
-            }
+        .ibm-plex-mono-regular {
+            font-family: "IBM Plex Mono", monospace;
+            font-weight: 400;
+            font-style: normal;
+        }
 
-            .ibm-plex-mono-regular {
-                font-family: "IBM Plex Mono", monospace;
-                font-weight: 400;
-                font-style: normal;
-            }
+        .ibm-plex-mono-medium {
+            font-family: "IBM Plex Mono", monospace;
+            font-weight: 500;
+            font-style: normal;
+        }
 
-            .ibm-plex-mono-medium {
-                font-family: "IBM Plex Mono", monospace;
-                font-weight: 500;
-                font-style: normal;
-            }
+        .ibm-plex-mono-semibold {
+            font-family: "IBM Plex Mono", monospace;
+            font-weight: 600;
+            font-style: normal;
+        }
 
-            .ibm-plex-mono-semibold {
-                font-family: "IBM Plex Mono", monospace;
-                font-weight: 600;
-                font-style: normal;
-            }
+        .ibm-plex-mono-bold {
+            font-family: "IBM Plex Mono", monospace;
+            font-weight: 700;
+            font-style: normal;
+        }
 
-            .ibm-plex-mono-bold {
-                font-family: "IBM Plex Mono", monospace;
-                font-weight: 700;
-                font-style: normal;
-            }
+        .ibm-plex-mono-thin-italic {
+            font-family: "IBM Plex Mono", monospace;
+            font-weight: 100;
+            font-style: italic;
+        }
 
-            .ibm-plex-mono-thin-italic {
-                font-family: "IBM Plex Mono", monospace;
-                font-weight: 100;
-                font-style: italic;
-            }
+        .ibm-plex-mono-extralight-italic {
+            font-family: "IBM Plex Mono", monospace;
+            font-weight: 200;
+            font-style: italic;
+        }
 
-            .ibm-plex-mono-extralight-italic {
-                font-family: "IBM Plex Mono", monospace;
-                font-weight: 200;
-                font-style: italic;
-            }
+        .ibm-plex-mono-light-italic {
+            font-family: "IBM Plex Mono", monospace;
+            font-weight: 300;
+            font-style: italic;
+        }
 
-            .ibm-plex-mono-light-italic {
-                font-family: "IBM Plex Mono", monospace;
-                font-weight: 300;
-                font-style: italic;
-            }
+        .ibm-plex-mono-regular-italic {
+            font-family: "IBM Plex Mono", monospace;
+            font-weight: 400;
+            font-style: italic;
+        }
 
-            .ibm-plex-mono-regular-italic {
-                font-family: "IBM Plex Mono", monospace;
-                font-weight: 400;
-                font-style: italic;
-            }
+        .ibm-plex-mono-medium-italic {
+            font-family: "IBM Plex Mono", monospace;
+            font-weight: 500;
+            font-style: italic;
+        }
 
-            .ibm-plex-mono-medium-italic {
-                font-family: "IBM Plex Mono", monospace;
-                font-weight: 500;
-                font-style: italic;
-            }
+        .ibm-plex-mono-semibold-italic {
+            font-family: "IBM Plex Mono", monospace;
+            font-weight: 600;
+            font-style: italic;
+        }
 
-            .ibm-plex-mono-semibold-italic {
-                font-family: "IBM Plex Mono", monospace;
-                font-weight: 600;
-                font-style: italic;
-            }
+        .ibm-plex-mono-bold-italic {
+            font-family: "IBM Plex Mono", monospace;
+            font-weight: 700;
+            font-style: italic;
+        }
 
-            .ibm-plex-mono-bold-italic {
-                font-family: "IBM Plex Mono", monospace;
-                font-weight: 700;
-                font-style: italic;
-            }
+        a {
+            color: #fd8d3c;
+        }
 
-            a {
-                color: #fd8d3c;
-            }
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+            overflow-y: auto;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            font-family: "PPEditorialNew-Regular";
+        }
 
-            body {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                width: 100%;
-                height: 100vh;
-                overflow-y: auto;
-                background-color: #f8f8f8;
-                margin: 0;
-                padding: 0;
-                font-family: "PPEditorialNew-Regular";
-            }
-            .main-select {
-                font-size: 3rem;
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                align-items: center;
-            }
+        .main-select {
+            font-size: 3rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
 
-            .main-select h1 {
-                margin-top: 0;
-            }
+        .main-select h1 {
+            margin-top: 0;
+        }
 
-            .highlight {
-                color: #fd8d3c;
-            }
+        .highlight {
+            color: #fd8d3c;
+        }
 
-            .main-header {
-                font-size: 3rem;
-                margin: 0;
-            }
+        .main-header {
+            font-size: 3rem;
+            margin: 0;
+        }
 
-            #selected-city {
-                font-size: 3rem;
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                align-items: center;
-                font-family: "PPEditorialNew-Regular";
-                margin: 0;
-            }
+        #selected-city {
+            font-size: 3rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            font-family: "PPEditorialNew-Regular";
+            margin: 0;
+        }
 
-            .city-select {
-    font-family: "PPEditorialNew-Regular";
-    font-size: 3rem;
-    cursor: pointer;
-    border-bottom: 2px solid #000;
-    padding: 0;
-    margin-top: 0;
-    margin-left: 15px;
-    position: relative;
-    display: flex;
-    align-items: center;
-}
+        .city-select {
+            font-family: "PPEditorialNew-Regular";
+            font-size: 3rem;
+            cursor: pointer;
+            border-bottom: 2px solid #000;
+            padding: 0;
+            margin-top: 0;
+            margin-left: 15px;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
 
-.dropdown-icon {
-    margin-left: 10px; /* Adjust spacing as needed */
-    display: flex;
-    align-items: center;
-}
+        .dropdown-icon {
+            margin-left: 10px; /* Adjust spacing as needed */
+            display: flex;
+            align-items: center;
+        }
 
-.dropdown-content {
-    display: none;
-    position: absolute;
-    top: 100%; /* Position below the select element */
-    left: 0;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    max-height: 200px;
-    overflow-y: auto;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-}
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%; /* Position below the select element */
+            left: 0;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            max-height: 200px;
+            overflow-y: auto;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
 
-.city-select:hover .dropdown-content {
-    display: block;
-}
-            .dropdown-content a {
-                color: black;
-                padding: 12px 16px;
-                text-decoration: none;
-                font-size: 1.5rem;
-                font-family: "PPEditorialNew-Regular";
-                display: block;
-            }
-            .dropdown-content a:hover {
-                background-color: #f1f1f1;
-            }
-            .city-select:hover .dropdown-content {
-                display: block;
-            }
-            .content {
-                width: 500px;
-                font-family: "TestUntitledSans-Regular";
-            }
+        .city-select:hover .dropdown-content {
+            display: block;
+        }
 
-            .references-title {
-                font-family: "PPEditorialNew-Regular", serif;
-                font-size: 1.5rem;
-                margin-bottom: 10px;
-            }
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-family: "PPEditorialNew-Regular";
+            display: block;
+        }
 
-            .references-content {
-                font-family: "TestUntitledSans-Regular", sans-serif;
-                font-size: 1rem;
-            }
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
 
-            .references-content p {
-                margin-bottom: 5px;
-            }
-        </style>
-    </head>
-    <body>
-        <div
-            style="
-                text-align: center;
-                font-family: 'IBM Plex Mono';
-                font-size: 1rem;
-                margin-top: 40px;
-                margin-bottom: 10px;
-            "
-        >
-            By
-            <a href="https://hudzah.com/" target="_blank " rel="noopener"
-                >HudZah</a>
-        </div>
-        <div class="main-select">
-            <h1 class="main-header">How Safe is</h1>
-            <div class="city-select">
-                <h1 id="selected-city">San Francisco</h1>
-                <div class="dropdown-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256">
-            <path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"></path>
-        </svg>
+        .content {
+            width: 500px;
+            font-family: "TestUntitledSans-Regular";
+        }
+
+        .references-title {
+            font-family: "PPEditorialNew-Regular", serif;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .references-content {
+            font-family: "TestUntitledSans-Regular", sans-serif;
+            font-size: 1rem;
+        }
+
+        .references-content p {
+            margin-bottom: 5px;
+        }
+
+        .highlight {
+            background-color: rgba(253, 141, 60, 0.5);
+            color: black;
+            font-weight: bold;
+            padding: 0 2px;
+        }
+
+        .body-text {
+            line-height: 1.9;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div style="text-align: center; font-family: 'TestUntitledSans-Regular'; font-size: 1rem; margin-top: 40px; margin-bottom: 10px;">
+        By <a href="https://hudzah.com/" target="_blank" rel="noopener">HudZah</a>
     </div>
-                <div class="dropdown-content">
-                    <a href="#" onclick="selectCity('Mission')">Mission</a>
-                    <a href="#" onclick="selectCity('Tenderloin')"
-                        >Tenderloin</a
-                    >
-                    <a href="#" onclick="selectCity('South of Market')"
-                        >South of Market</a
-                    >
-                    <a
-                        href="#"
-                        onclick="selectCity('Financial District/South Beach')"
-                        >Financial District/South Beach</a
-                    >
-                    <a href="#" onclick="selectCity('Bayview Hunters Point')"
-                        >Bayview Hunters Point</a
-                    >
-                    <a href="#" onclick="selectCity('North Beach')"
-                        >North Beach</a
-                    >
-                    <a href="#" onclick="selectCity('Western Addition')"
-                        >Western Addition</a
-                    >
-                    <a href="#" onclick="selectCity('Sunset/Parkside')"
-                        >Sunset/Parkside</a
-                    >
-                    <a href="#" onclick="selectCity('Nob Hill')">Nob Hill</a>
-                    <a href="#" onclick="selectCity('Castro/Upper Market')"
-                        >Castro/Upper Market</a
-                    >
-                    <a href="#" onclick="selectCity('Marina')">Marina</a>
-                    <a href="#" onclick="selectCity('Hayes Valley')"
-                        >Hayes Valley</a
-                    >
-                    <a href="#" onclick="selectCity('Russian Hill')"
-                        >Russian Hill</a
-                    >
-                    <a href="#" onclick="selectCity('Outer Richmond')"
-                        >Outer Richmond</a
-                    >
-                    <a href="#" onclick="selectCity('West of Twin Peaks')"
-                        >West of Twin Peaks</a
-                    >
-                    <a href="#" onclick="selectCity('Bernal Heights')"
-                        >Bernal Heights</a
-                    >
-                    <a href="#" onclick="selectCity('Chinatown')">Chinatown</a>
-                    <a href="#" onclick="selectCity('Pacific Heights')"
-                        >Pacific Heights</a
-                    >
-                    <a href="#" onclick="selectCity('Mission Bay')"
-                        >Mission Bay</a
-                    >
-                    <a href="#" onclick="selectCity('Excelsior')">Excelsior</a>
-                    <a href="#" onclick="selectCity('Potrero Hill')"
-                        >Potrero Hill</a
-                    >
-                    <a href="#" onclick="selectCity('Haight Ashbury')"
-                        >Haight Ashbury</a
-                    >
-                    <a href="#" onclick="selectCity('Outer Mission')"
-                        >Outer Mission</a
-                    >
-                    <a href="#" onclick="selectCity('Inner Richmond')"
-                        >Inner Richmond</a
-                    >
-                    <a href="#" onclick="selectCity('Lakeshore')">Lakeshore</a>
-                    <a href="#" onclick="selectCity('Inner Sunset')"
-                        >Inner Sunset</a
-                    >
-                    <a href="#" onclick="selectCity('Lone Mountain/USF')"
-                        >Lone Mountain/USF</a
-                    >
-                    <a href="#" onclick="selectCity('Portola')">Portola</a>
-                    <a href="#" onclick="selectCity('Noe Valley')"
-                        >Noe Valley</a
-                    >
-                    <a href="#" onclick="selectCity('Visitacion Valley')"
-                        >Visitacion Valley</a
-                    >
-                    <a
-                        href="#"
-                        onclick="selectCity('Oceanview/Merced/Ingleside')"
-                        >Oceanview/Merced/Ingleside</a
-                    >
-                    <a href="#" onclick="selectCity('Golden Gate Park')"
-                        >Golden Gate Park</a
-                    >
-                    <a href="#" onclick="selectCity('Japantown')">Japantown</a>
-                    <a href="#" onclick="selectCity('Presidio Heights')"
-                        >Presidio Heights</a
-                    >
-                    <a href="#" onclick="selectCity('Glen Park')">Glen Park</a>
-                    <a href="#" onclick="selectCity('Twin Peaks')"
-                        >Twin Peaks</a
-                    >
-                    <a href="#" onclick="selectCity('Treasure Island')"
-                        >Treasure Island</a
-                    >
-                    <a href="#" onclick="selectCity('Presidio')">Presidio</a>
-                    <a href="#" onclick="selectCity('Lincoln Park')"
-                        >Lincoln Park</a
-                    >
-                    <a href="#" onclick="selectCity('Seacliff')">Seacliff</a>
-                    <a href="#" onclick="selectCity('McLaren Park')"
-                        >McLaren Park</a
-                    >
-                </div>
+    <div class="main-select">
+        <h1 class="main-header">How Safe is</h1>
+        <div class="city-select">
+            <h1 id="selected-city">San Francisco</h1>
+            <div class="dropdown-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256">
+                    <path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"></path>
+                </svg>
+            </div>
+            <div class="dropdown-content">
+                <a href="#" onclick="selectCity('Mission')">Mission</a>
+                <a href="#" onclick="selectCity('Tenderloin')">Tenderloin</a>
+                <a href="#" onclick="selectCity('South of Market')">South of Market</a>
+                <a href="#" onclick="selectCity('Financial District/South Beach')">Financial District/South Beach</a>
+                <a href="#" onclick="selectCity('Bayview Hunters Point')">Bayview Hunters Point</a>
+                <a href="#" onclick="selectCity('North Beach')">North Beach</a>
+                <a href="#" onclick="selectCity('Western Addition')">Western Addition</a>
+                <a href="#" onclick="selectCity('Sunset/Parkside')">Sunset/Parkside</a>
+                <a href="#" onclick="selectCity('Nob Hill')">Nob Hill</a>
+                <a href="#" onclick="selectCity('Castro/Upper Market')">Castro/Upper Market</a>
+                <a href="#" onclick="selectCity('Marina')">Marina</a>
+                <a href="#" onclick="selectCity('Hayes Valley')">Hayes Valley</a>
+                <a href="#" onclick="selectCity('Russian Hill')">Russian Hill</a>
+                <a href="#" onclick="selectCity('Outer Richmond')">Outer Richmond</a>
+                <a href="#" onclick="selectCity('West of Twin Peaks')">West of Twin Peaks</a>
+                <a href="#" onclick="selectCity('Bernal Heights')">Bernal Heights</a>
+                <a href="#" onclick="selectCity('Chinatown')">Chinatown</a>
+                <a href="#" onclick="selectCity('Pacific Heights')">Pacific Heights</a>
+                <a href="#" onclick="selectCity('Mission Bay')">Mission Bay</a>
+                <a href="#" onclick="selectCity('Excelsior')">Excelsior</a>
+                <a href="#" onclick="selectCity('Potrero Hill')">Potrero Hill</a>
+                <a href="#" onclick="selectCity('Haight Ashbury')">Haight Ashbury</a>
+                <a href="#" onclick="selectCity('Outer Mission')">Outer Mission</a>
+                <a href="#" onclick="selectCity('Inner Richmond')">Inner Richmond</a>
+                <a href="#" onclick="selectCity('Lakeshore')">Lakeshore</a>
+                <a href="#" onclick="selectCity('Inner Sunset')">Inner Sunset</a>
+                <a href="#" onclick="selectCity('Lone Mountain/USF')">Lone Mountain/USF</a>
+                <a href="#" onclick="selectCity('Portola')">Portola</a>
+                <a href="#" onclick="selectCity('Noe Valley')">Noe Valley</a>
+                <a href="#" onclick="selectCity('Visitacion Valley')">Visitacion Valley</a>
+                <a href="#" onclick="selectCity('Oceanview/Merced/Ingleside')">Oceanview/Merced/Ingleside</a>
+                <a href="#" onclick="selectCity('Golden Gate Park')">Golden Gate Park</a>
+                <a href="#" onclick="selectCity('Japantown')">Japantown</a>
+                <a href="#" onclick="selectCity('Presidio Heights')">Presidio Heights</a>
+                <a href="#" onclick="selectCity('Glen Park')">Glen Park</a>
+                <a href="#" onclick="selectCity('Twin Peaks')">Twin Peaks</a>
+                <a href="#" onclick="selectCity('Treasure Island')">Treasure Island</a>
+                <a href="#" onclick="selectCity('Presidio')">Presidio</a>
+                <a href="#" onclick="selectCity('Lincoln Park')">Lincoln Park</a>
+                <a href="#" onclick="selectCity('Seacliff')">Seacliff</a>
+                <a href="#" onclick="selectCity('McLaren Park')">McLaren Park</a>
             </div>
         </div>
-        <div class="content">
-            <p id="safety-message" style="margin-top: 20px"></p>
-            <div class="info-container">
-                Since 2018, the City of San Francisco has been working to
-                improve the safety of its neighborhoods. This project visualizes
-                the data that the City has collected over the past year to show
-                how the safety of neighborhoods has changed.
-
-                <br />
-                <br />
-
-                <p>
-                    When analyzing the safety of San Francisco neighborhoods,
-                    it's clear that some areas experience significantly higher
-                    crime rates than others. For instance, the
-                    <span style="color: #fd8d3c; font-weight: bold"
-                        >Mission</span
-                    >
-                    neighborhood tops the list with a staggering
-                    <span style="color: #fd8d3c; font-weight: bold"
-                        >85,671</span
-                    >
-                    incidents, closely followed by
-                    <span style="color: #fd8d3c; font-weight: bold"
-                        >Tenderloin</span
-                    >. On average, the most dangerous neighborhoods are
-                    <span style="color: #fd8d3c; font-weight: bold"
-                        >6 times</span
-                    >
-                    more prone to crime than the average.
-                </p>
-
-                <canvas id="incidentsChart" width="500" height="500"></canvas>
-
-                <p>
-                    An incident is defined as a reported crime that occurs in a
-                    neighborhood. This includes crimes such as Larceny Theft,
-                    Malicious Mischief, Assault, Burglary, Motor Vehicle Theft,
-                    Fraud, Lost Property, Warrant, Drug Offense, Robbery,
-                    Missing Person and more.
-                </p>
-
-                <h3 class="references-title">Friday the 13th?</h3>
-
-                <p>
-                    Oddly, Fridays see the highest number of incidents at
-                    <span style="color: #fd8d3c; font-weight: bold"
-                        >130,389</span
-                    >
-                    while Sundays have the least with
-                    <span style="color: #fd8d3c; font-weight: bold"
-                        >111,734</span
-                    >
-                    incidents.
-                </p>
-                <canvas
-                    id="incidentDaysChart"
-                    width="500"
-                    height="300"
-                ></canvas>
-
-                <h3 class="references-title">
-                    January: Crime's Favorite Month
-                </h3>
-
-                <p>
-                    The month of January records the highest number of incidents
-                    at
-                    <span style="color: #fd8d3c; font-weight: bold"
-                        >79,137</span
-                    >
-                    while November has the fewest with
-                    <span style="color: #fd8d3c; font-weight: bold"
-                        >65,721</span
-                    >
-                    incidents.
-                </p>
-                <canvas
-                    id="incidentMonthsChart"
-                    width="500"
-                    height="300"
-                ></canvas>
-
-                <h3 class="references-title">Watch Your Step</h3>
-
-                <p>
-                    Analyzing the intersections of where the most incidents
-                    occured is a great way to get a sense of the neighborhoods
-                    that are most dangerous. The average number of incidents per
-                    intersection is
-                    <span style="color: #fd8d3c; font-weight: bold">106</span>
-                    meaning that the most dangerous intersection, Market/Powell,
-                    is
-                    <span style="color: #fd8d3c; font-weight: bold"
-                        >45 times</span
-                    >
-                    more dangerous than the average.
-                </p>
-
-                <canvas
-                    id="topIntersectionsChart"
-                    width="500"
-                    height="400"
-                ></canvas>
-
-                <br />
-
-                <h3 class="references-title">How Safe is SF?</h3>
-
-                <p>
-                    Below, is a Choropleth Map of the most dangerous
-                    neighborhoods in San Francisco. The map shows the number of
-                    incidents in each neighborhood, with the color representing
-                    the number of incidents. The darker the color, the more
-                    incidents the neighborhood has.
-                </p>
-
-                <br />
-                <iframe
-                    src="neighborhood_choropleth.html"
-                    width="100%"
-                    height="400px"
-                    style="
-                        border: none;
-                        transition: box-shadow 0.3s ease-in-out;
-                    "
-                    onmouseover="this.style.boxShadow='6px 6px 0 #fd8d3c'"
-                    onmouseout="this.style.boxShadow='none'"
-                ></iframe>
-                <div
-                    style="
-                        text-align: center;
-                        color: grey;
-                        font-size: 0.9rem;
-                        margin-top: 5px;
-                    "
-                >
-                    Neighborhood Choropleth Map
-                </div>
-                <br />
-                <br />
-                <iframe
-                    src="neighborhood_heatmap.html"
-                    width="100%"
-                    height="400px"
-                    style="
-                        border: none;
-                        transition: box-shadow 0.3s ease-in-out;
-                    "
-                    onmouseover="this.style.boxShadow='6px 6px 0 #fd8d3c'"
-                    onmouseout="this.style.boxShadow='none'"
-                ></iframe>
-                <div
-                    style="
-                        text-align: center;
-                        color: grey;
-                        font-size: 0.9rem;
-                        margin-top: 5px;
-                    "
-                >
-                    Neighborhood Heatmap
-                </div>
-                <br />
-                <div class="references">
-                    <h3 class="references-title">Disclaimer</h3>
-                                        <div class="references-content">
-                                            <p>The data presented on this
-                    website is for informational purposes only. The current data is from the 1st of Jauary 2018 to 15th of May 2024. We make no
-                    guarantees about the completeness, reliability, or accuracy
-                    of the data. Use this information at your own risk.</p>
+    </div>
+    <div class="content">
+        <p id="safety-message" style="margin-top: 20px"></p>
+        <div class="info-container">
+            <p class="body-text">
+                Since 2018, the City of San Francisco has been working to improve the safety of its neighborhoods. This project visualizes the data that the City has collected over the past year to show how the safety of neighborhoods has changed.
+            </p>
+            <p class="body-text">
+                When analyzing the safety of San Francisco neighborhoods, it's clear that some areas experience significantly higher crime rates than others. For instance, the <span class="highlight">Mission</span> neighborhood tops the list with a staggering <span class="highlight">85,671</span> incidents, closely followed by <span class="highlight">Tenderloin</span>. On average, the most dangerous neighborhoods are <span class="highlight">6 times</span> more prone to crime than the average.
+            </p>
+            <canvas id="incidentsChart" width="500" height="500"></canvas>
+            <p class="body-text">
+                An incident is defined as a reported crime that occurs in a neighborhood. This includes crimes such as Larceny Theft, Malicious Mischief, Assault, Burglary, Motor Vehicle Theft, Fraud, Lost Property, Warrant, Drug Offense, Robbery, Missing Person and more.
+            </p>
+            <h3 class="references-title">Friday the 13th?</h3>
+            <p class="body-text">
+                Oddly, Fridays see the highest number of incidents at <span class="highlight">130,389</span> while Sundays have the least with <span class="highlight">111,734</span> incidents.
+            </p>
+            <canvas id="incidentDaysChart" width="500" height="300"></canvas>
+            <h3 class="references-title">January: Crime's Favorite Month</h3>
+            <p class="body-text">
+                The month of January records the highest number of incidents at <span class="highlight">79,137</span> while November has the fewest with <span class="highlight">65,721</span> incidents.
+            </p>
+            <canvas id="incidentMonthsChart" width="500" height="300"></canvas>
+            <h3 class="references-title">Watch Your Step</h3>
+            <p class="body-text">
+                Analyzing the intersections of where the most incidents occured is a great way to get a sense of the neighborhoods that are most dangerous. The average number of incidents per intersection is <span class="highlight">106</span> meaning that the most dangerous intersection, Market/Powell, is <span class="highlight">45 times</span> more dangerous than the average.
+            </p>
+            <canvas id="topIntersectionsChart" width="500" height="400"></canvas>
+            <br />
+            <h3 class="references-title">How Safe is SF?</h3>
+            <p class="body-text">
+                Below, is a Choropleth Map of the most dangerous neighborhoods in San Francisco. The map shows the number of incidents in each neighborhood, with the color representing the number of incidents. 
+            </p>
+            <p class="body-text">
+                An important insight from this is that, although <span class="highlight">Mission</span> has the most reported incidents, it is also the largest and most densely populated neighborhood in San Francisco.
+            </p>
+            <br />
+            <iframe src="neighborhood_choropleth.html" width="100%" height="400px" style="border: none; transition: box-shadow 0.3s ease-in-out;" onmouseover="this.style.boxShadow='6px 6px 0 #fd8d3c'" onmouseout="this.style.boxShadow='none'"></iframe>
+            <div style="text-align: center; color: grey; font-size: 0.9rem; margin-top: 5px;">
+                Neighborhood Choropleth Map
+            </div>
+            <br />
+             <p class="body-text">
+                We notice this more when analyzing the heatmap of incidents. Incidents across <span class="highlight">Mission</span> are much more spread out than incidents across <span class="highlight">Tenderloin</span>. Therefore, it's unfair to say that the neighborhoods are equally dangerous.
+            </p>
+            <iframe src="neighborhood_heatmap.html" width="100%" height="400px" style="border: none; transition: box-shadow 0.3s ease-in-out;" onmouseover="this.style.boxShadow='6px 6px 0 #fd8d3c'" onmouseout="this.style.boxShadow='none'"></iframe>
+            <div style="text-align: center; color: grey; font-size: 0.9rem; margin-top: 5px;">
+                Neighborhood Heatmap
+            </div>
+            <br />
+            <div class="references">
+                <h3 class="references-title">Disclaimer</h3>
+                <div class="references-content">
+                    <p class="body-text">
+                        The data presented on this website is for informational purposes only. The current data is from the 1st of Jauary 2018 to 15th of May 2024. We make no guarantees about the completeness, reliability, or accuracy of the data. Use this information at your own risk.
+                    </p>
                 </div>
                 <div class="references">
                     <h3 class="references-title">Shout Outs</h3>
                     <div class="references-content">
                         <p>
-                            <a
-                                href="https://data.sfgov.org/-/Analysis-Neighborhoods/p5b7-5n3h"
-                                target="_blank"
-                                rel="noopener"
-                            >
-                                Analysis Neighborhoods Data
-                            </a>
+                            <a href="https://twitter.com/wolk_josh" rel="noopener" target="_blank">Josh Wolk</a> for font inspiration, <a href="https://www.wilburzhang.com/">Wilbur Zhang</a> and <a href="https://www.aileenis.online/">Aileen Luo</a> for the immaculate design advice, and <a href="https://twitter.com/BrookeaJoseph" rel="noopener" target="_blank">Brooke Joseph</a> for the text 'You should make a map of all the dangerous neighbourhoods in sf lol'
                         </p>
                         <p>
-                            <a
-                                href="https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-2018-to-Present/wg3w-h783/about_data"
-                                target="_blank"
-                                rel="noopener"
-                            >
+                            <a href="https://data.sfgov.org/-/Analysis-Neighborhoods/p5b7-5n3h" target="_blank" rel="noopener">Analysis Neighborhoods Data</a>
+                        </p>
+                        <p>
+                            <a href="https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-2018-to-Present/wg3w-h783/about_data" target="_blank" rel="noopener">
                                 Police Department Incident Reports Data
                             </a>
                         </p>
                         <p>
-                            <a
-                                href="https://gist.github.com/megpay/1884c76a43f26fa1206bf2111e619646"
-                                target="_blank"
-                                rel="noopener"
-                            >
+                            <a href="https://gist.github.com/megpay/1884c76a43f26fa1206bf2111e619646" target="_blank" rel="noopener">
                                 San Francisco Neighborhood Shapefiles
                             </a>
                         </p>
-                        <p>
-                            <a
-                                href="https://twitter.com/wolk_josh"
-                                rel="noopener"
-                                target="_blank"
-                                >Josh Wolk</a
-                            >
-                            for font inspiration
-                        </p>
-                        <p>
-                            <a
-                                href="https://twitter.com/BrookeaJoseph"
-                                rel="noopener"
-                                target="_blank"
-                                >Brooke Joseph</a
-                            >
-                            for the text 'You should make a map of all the
-                            dangerous neighbourhoods in sf lol'
-                        </p>
+                        
                     </div>
                 </div>
 
@@ -656,43 +443,28 @@
                 "McLaren Park": 1035,
             };
 
-            const averageIncidents =
-                Object.values(incidentData).reduce((a, b) => a + b, 0) /
-                Object.keys(incidentData).length;
+            const averageIncidents = Object.values(incidentData).reduce((a, b) => a + b, 0) / Object.keys(incidentData).length;
 
             function selectCity(city) {
                 document.getElementById("selected-city").innerText = city;
                 const cityIncidents = incidentData[city];
-                const timesComparison = (
-                    cityIncidents / averageIncidents
-                ).toFixed(2);
-                const safetyMessage =
-                    cityIncidents > averageIncidents
-                        ? `<span class="highlight">${city}</span> is <span class="highlight">${timesComparison} times</span> more dangerous than the average neighborhood with <span class="highlight">${cityIncidents}</span> incidents since 2018. <br /><br />`
-                        : `<span class="highlight">${city}</span> is <span class="highlight">${(
-                              1 / timesComparison
-                          ).toFixed(
-                              2
-                          )} times</span> safer than the average neighborhood with <span class="highlight">${cityIncidents}</span> incidents since 2018.
-                          <br /><br />`;
-                document.getElementById("safety-message").innerHTML =
-                    safetyMessage;
+                const timesComparison = (cityIncidents / averageIncidents).toFixed(2);
+                const safetyMessage = cityIncidents > averageIncidents
+                    ? `<p class="body-text"><span class="highlight">${city}</span> is <span class="highlight">${timesComparison} times</span> more dangerous than the average neighborhood with <span class="highlight">${cityIncidents}</span> incidents since 2018. <br /></p>`
+                    : `<p class="body-text"><span class="highlight">${city}</span> is <span class="highlight">${(1 / timesComparison).toFixed(2)} times</span> more safer than the average neighborhood with <span class="highlight">${cityIncidents}</span> incidents since 2018. <br /></p>`;
+                document.getElementById("safety-message").innerHTML = safetyMessage;
             }
         </script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
         <script>
             // Get the canvas element
-            const ctx = document
-                .getElementById("incidentsChart")
-                .getContext("2d");
+            const ctx = document.getElementById("incidentsChart").getContext("2d");
 
             const sortedIncidentData = Object.entries(incidentData)
                 .sort(([, a], [, b]) => b - a)
                 .slice(0, 30);
-            const neighborhoods = sortedIncidentData.map(
-                ([neighborhood]) => neighborhood
-            );
+            const neighborhoods = sortedIncidentData.map(([neighborhood]) => neighborhood);
             const incidentCounts = sortedIncidentData.map(([, count]) => count);
             // Create the chart
             new Chart(ctx, {
@@ -753,21 +525,9 @@
             });
 
             // Incident Days Chart
-            const incidentDaysCtx = document
-                .getElementById("incidentDaysChart")
-                .getContext("2d");
-            const incidentDays = [
-                "Friday",
-                "Wednesday",
-                "Thursday",
-                "Monday",
-                "Tuesday",
-                "Saturday",
-                "Sunday",
-            ];
-            const incidentDayCounts = [
-                130389, 127011, 121958, 120250, 119934, 119619, 111734,
-            ];
+            const incidentDaysCtx = document.getElementById("incidentDaysChart").getContext("2d");
+            const incidentDays = ["Friday", "Wednesday", "Thursday", "Monday", "Tuesday", "Saturday", "Sunday"];
+            const incidentDayCounts = [130389, 127011, 121958, 120250, 119934, 119619, 111734];
 
             new Chart(incidentDaysCtx, {
                 type: "bar",
@@ -822,9 +582,7 @@
             });
 
             // Incident by Intersection Chart
-            const topIntersectionsCtx = document
-                .getElementById("topIntersectionsChart")
-                .getContext("2d");
+            const topIntersectionsCtx = document.getElementById("topIntersectionsChart").getContext("2d");
             const topIntersections = [
                 "MARKET/POWELL",
                 "BOARDMAN/BRYANT",
@@ -837,9 +595,7 @@
                 "04TH/LONG BRIDGE",
                 "STEVENSON/07TH/ODD",
             ];
-            const topIntersectionCounts = [
-                4765, 3975, 3881, 3768, 3394, 3392, 3184, 2997, 2779, 2675,
-            ];
+            const topIntersectionCounts = [4765, 3975, 3881, 3768, 3394, 3392, 3184, 2997, 2779, 2675];
 
             new Chart(topIntersectionsCtx, {
                 type: "bar",
@@ -894,27 +650,9 @@
             });
 
             // Incident Months Chart
-            const incidentMonthsCtx = document
-                .getElementById("incidentMonthsChart")
-                .getContext("2d");
-            const incidentMonths = [
-                "Jan",
-                "Feb",
-                "Mar",
-                "Apr",
-                "May",
-                "Jun",
-                "Jul",
-                "Aug",
-                "Sep",
-                "Oct",
-                "Nov",
-                "Dec",
-            ];
-            const incidentMonthCounts = [
-                79137, 72320, 74911, 71963, 69421, 66852, 72105, 72199, 69193,
-                70624, 65721, 66449,
-            ];
+            const incidentMonthsCtx = document.getElementById("incidentMonthsChart").getContext("2d");
+            const incidentMonths = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            const incidentMonthCounts = [79137, 72320, 74911, 71963, 69421, 66852, 72105, 72199, 69193, 70624, 65721, 66449];
 
             new Chart(incidentMonthsCtx, {
                 type: "line",
@@ -969,13 +707,9 @@
             });
 
             // Incident Years Chart
-            const incidentYearsCtx = document
-                .getElementById("incidentYearsChart")
-                .getContext("2d");
+            const incidentYearsCtx = document.getElementById("incidentYearsChart").getContext("2d");
             const incidentYears = [2018, 2019, 2020, 2021, 2022, 2023, 2024];
-            const incidentYearCounts = [
-                151551, 146670, 117420, 128252, 135504, 132411, 39087,
-            ];
+            const incidentYearCounts = [151551, 146670, 117420, 128252, 135504, 132411, 39087];
 
             new Chart(incidentYearsCtx, {
                 type: "bar",
